@@ -54,7 +54,7 @@ def statusTrait():
 
 
 
-scores = [5, 6, 4, 5]
+scores = [7, 6, 6, 1]
 
 scores = subTrait(scores)
 baseProfile = addTrait(scores)
