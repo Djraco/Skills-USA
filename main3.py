@@ -25,8 +25,10 @@ def format_data(data):
             # Send the data to the processing function)
             data[current_candidate].append(candidate_data)
 
+# Converts each set of scores for each candidate to the base profile
 def process_data(data):
     for candidate in data:
+        i = 0
         for scores in data[candidate]:
             personality = scores[0] - 5
             creativity = scores[1] - 5
@@ -40,20 +42,31 @@ def process_data(data):
                 (3 * teamWork - creativity)
                 )), 2)
             
-            #scores = base_profile
-            print(base_profiles)
-            data[candidate].append(base_profiles)
+            data[candidate][i] = base_profiles
+            i += 1
+
+def average_base_profiles(data):
+    for candidate in data:
+
+        average = 0
+        i = 0
+        for base_profile in data[candidate]:
+            average += base_profile
+            i += 1
+        average /= i
+        data[candidate] = round(average, 2)
+
 
 #read_file()
 
-print(data)
-
 format_data(data)
 
-print(data)
+print(f"Formatted data:\n{data}\n")
 
 process_data(data)
 
-print(data)
+print(f"Processed data:\n{data}\n")
 
-average_base_profiles()
+average_base_profiles(data)
+
+print(f"Averaged base profiles:\n{data}\n")
